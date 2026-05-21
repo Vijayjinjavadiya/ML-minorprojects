@@ -1,0 +1,105 @@
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://192.168.0.24:8501
+  External URL: http://103.179.192.29:8501
+
++------------------------- Traceback (most recent call last) --------------------------+
+| C:\Users\jinju\anaconda3\Lib\site-packages\streamlit\runtime\scriptrunner\exec_code. |
+| py:121 in exec_func_with_error_handling                                              |
+|                                                                                      |
+| C:\Users\jinju\anaconda3\Lib\site-packages\streamlit\runtime\scriptrunner\script_run |
+| ner.py:645 in code_to_exec                                                           |
+|                                                                                      |
+| C:\Users\jinju\Documents\AI_ML\Prime\minor_project_\CreditWise_loan_system\app.py:41 |
+| 7 in <module>                                                                        |
+|                                                                                      |
+|   414         "Employer_Category": employer_category,                                |
+|   415     }                                                                          |
+|   416                                                                                |
+| > 417     features = build_prediction_frame(user_inputs, assets)                     |
+|   418     prediction = model.predict(features)[0]                                    |
+|   419     probability = None                                                         |
+|   420     if hasattr(model, "predict_proba"):                                        |
+|                                                                                      |
+| C:\Users\jinju\Documents\AI_ML\Prime\minor_project_\CreditWise_loan_system\app.py:21 |
+| 2 in build_prediction_frame                                                          |
+|                                                                                      |
+|   209     numeric_cols = data.select_dtypes(include=["number"]).columns              |
+|   210     categorical_cols = data.select_dtypes(include=["object"]).columns          |
+|   211     data[numeric_cols] = assets["num_imputer"].transform(data[numeric_cols])   |
+| > 212     data[categorical_cols] = assets["cat_imputer"].transform(data[categorical_ |
+|   213     data = data.drop("Applicant_ID", axis=1)                                   |
+|   214                                                                                |
+|   215     data["Education_Level"] = assets["education_encoder"].transform(data["Educ |
+|                                                                                      |
+| C:\Users\jinju\anaconda3\Lib\site-packages\sklearn\utils\_set_output.py:319 in       |
+| wrapped                                                                              |
+|                                                                                      |
+|   316                                                                                |
+|   317     @wraps(f)                                                                  |
+|   318     def wrapped(self, X, *args, **kwargs):                                     |
+| > 319         data_to_wrap = f(self, X, *args, **kwargs)                             |
+|   320         if isinstance(data_to_wrap, tuple):                                    |
+|   321             # only wrap the first output for cross decomposition               |
+|   322             return_tuple = (                                                   |
+|                                                                                      |
+| C:\Users\jinju\anaconda3\Lib\site-packages\sklearn\impute\_base.py:607 in transform  |
+|                                                                                      |
+|    604         """                                                                   |
+|    605         check_is_fitted(self)                                                 |
+|    606                                                                               |
+| >  607         X = self._validate_input(X, in_fit=False)                             |
+|    608         statistics = self.statistics_                                         |
+|    609                                                                               |
+|    610         if X.shape[1] != statistics.shape[0]:                                 |
+|                                                                                      |
+| C:\Users\jinju\anaconda3\Lib\site-packages\sklearn\impute\_base.py:363 in            |
+| _validate_input                                                                      |
+|                                                                                      |
+|    360                 )                                                             |
+|    361                 raise new_ve from None                                        |
+|    362             else:                                                             |
+| >  363                 raise ve                                                      |
+|    364                                                                               |
+|    365         if in_fit:                                                            |
+|    366             # Use the dtype seen in `fit` for non-`fit` conversion            |
+|                                                                                      |
+| C:\Users\jinju\anaconda3\Lib\site-packages\sklearn\impute\_base.py:344 in            |
+| _validate_input                                                                      |
+|                                                                                      |
+|    341             ensure_all_finite = True                                          |
+|    342                                                                               |
+|    343         try:                                                                  |
+| >  344             X = validate_data(                                                |
+|    345                 self,                                                         |
+|    346                 X,                                                            |
+|    347                 reset=in_fit,                                                 |
+|                                                                                      |
+| C:\Users\jinju\anaconda3\Lib\site-packages\sklearn\utils\validation.py:2919 in       |
+| validate_data                                                                        |
+|                                                                                      |
+|   2916         The validated input. A tuple is returned if both `X` and `y` are      |
+|   2917         validated.                                                            |
+|   2918     """                                                                       |
+| > 2919     _check_feature_names(_estimator, X, reset=reset)                          |
+|   2920     tags = get_tags(_estimator)                                               |
+|   2921     if y is None and tags.target_tags.required:                               |
+|   2922         raise ValueError(                                                     |
+|                                                                                      |
+| C:\Users\jinju\anaconda3\Lib\site-packages\sklearn\utils\validation.py:2777 in       |
+| _check_feature_names                                                                 |
+|                                                                                      |
+|   2774         if not missing_names and not unexpected_names:                        |
+|   2775             message += "Feature names must be in the same order as they were  |
+|   2776                                                                               |
+| > 2777         raise ValueError(message)                                             |
+|   2778                                                                               |
+|   2779                                                                               |
+|   2780 def _check_n_features(estimator, X, reset):                                   |
++--------------------------------------------------------------------------------------+
+ValueError: The feature names should match those that were passed during fit.
+Feature names seen at fit time, yet now missing:
+- Loan_Approved
+
